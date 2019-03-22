@@ -4,7 +4,6 @@ import mysql.connector
 import zipfile
 
 def add_data_from_json_file(jsonfile):
-
     host_env_name = "{}_MYSQL_SERVICE_HOST".format(os.environ["MYSQL_SERVICE_PREFIX"].upper().replace("-", "_"))
     db_conn_data = {
       "user": os.environ["MYSQL_SERVICE_USER"],
@@ -12,8 +11,6 @@ def add_data_from_json_file(jsonfile):
       "host": os.environ[host_env_name],
       "database": os.environ["MYSQL_SERVICE_PERSONA_DB"]
     }
-
-    print(db_conn_data)
   
     db = mysql.connector.connect(**db_conn_data)
     cursor = db.cursor()
@@ -32,7 +29,7 @@ def add_data_from_json_file(jsonfile):
     
     db.commit()
 
-    print("Importing JSON data.")
+    print("Importing JSON data...")
     
     with open(jsonfile) as jf:
       counter = 0
